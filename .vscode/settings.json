@@ -1,3 +1,11 @@
 {
-  "cSpell.words": ["imread", "imwrite", "keypoint", "mediapipe"]
+  "cSpell.words": [
+    "imread",
+    "imwrite",
+    "keypoint",
+    "keypoints",
+    "linalg",
+    "mediapipe",
+    "polyfit"
+  ]
 }
