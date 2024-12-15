@@ -34,10 +34,14 @@ def is_low_pose(thresholds, slope, distances):
     """
     slope_thresh, spine_dist_thresh, arm_dist_thresh = thresholds
     dist_hip, dist_knee, dist_elbow = distances
-    return slope <= slope_thresh and \
-           dist_hip < spine_dist_thresh and \
-           dist_knee < spine_dist_thresh and \
-           dist_elbow > arm_dist_thresh
+    if slope <= slope_thresh and \
+       dist_hip < spine_dist_thresh and \
+       dist_knee < spine_dist_thresh and \
+       dist_elbow > arm_dist_thresh:
+        return True
+    else:
+        return False
+
 
 def draw_landmarks(image, landmarks, settings):
     """
@@ -107,7 +111,7 @@ if __name__ == "__main__":
                 # ======== 描画 ========
                 frame = draw_landmarks(frame, landmarks, DRAW_SETTINGS)  # ランドマークを描画
                 cv2.putText(frame, str(low_pose_count), (20, 100),  # カウントを表示
-                            cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 2, cv2.LINE_AA)
+                            cv2.FONT_HERSHEY_SIMPLEX, 2, (150, 180, 85), 2, cv2.LINE_AA)
 
             # ======== 表示 ========
             cv2.imshow('AI Personal Trainer', frame)

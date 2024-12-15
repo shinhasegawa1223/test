@@ -1,0 +1,23 @@
+# ベースイメージとしてPythonを使用
+FROM python:3.9-slim
+
+# 必要なシステムパッケージをインストール
+RUN apt-get update && apt-get install -y \
+    ffmpeg \
+    libsm6 \
+    libxext6 \
+    && apt-get clean
+
+# 作業ディレクトリを設定
+WORKDIR /app
+
+# 必要なファイルをコンテナにコピー
+COPY requirements.txt requirements.txt
+COPY main.py main.py
+COPY training.mp4 training.mp4
+
+# Python依存関係をインストール
+RUN pip install -r requirements.txt
+
+# スクリプトを実行
+CMD ["python", "main.py"]
